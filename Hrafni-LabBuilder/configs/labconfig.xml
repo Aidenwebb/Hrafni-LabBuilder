@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<hrafniconfig>
+
+    <description>Config file used for developing this module</description>
+
+    <!-- Lets start by ensuring Hyper-V has necissary switches configured -->
+    <switches>
+        <switch name="External Switch" type="External">
+            <bindadapter macaddress="24-4B-FE-5E-58-1E" />
+        </switch>
+        <switch name="Private Switch" type="Private" />
+        <switch name="Internal Switch" type="Internal" />
+    </switches>
+</hrafniconfig>
