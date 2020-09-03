@@ -12,7 +12,7 @@ function Get-LabSwitchConfig {
     }
     
     process {
-        Write-Verbose "Looping through each Switch Config"
+        Write-Verbose "Looping through each of $($SwitchConfigs.count) Switch Configs"
         foreach ($SwitchConfig in $SwitchConfigs)
         {
             Write-Verbose "Current SwitchConfig:- Name: $($SwitchConfig.Name) | Type: $($SwitchConfig.Type)"
