@@ -15,7 +15,7 @@
 
     <!-- Next let's create VM's -->
     <vms>
-        <vm name="HRF-DC1"
+        <vm name="tHRF-DC1"
             generation='2'>
             <adapters>
                 <adapter name="External Adapter"
@@ -24,7 +24,7 @@
                          linktoswitch="Private Switch"/>
             </adapters>
         </vm>
-        <vm name="HRF-DC2"
+        <vm name="tHRF-DC2"
             generation='2'>
             <adapters>
                 <adapter name="External Adapter"
