@@ -18,6 +18,7 @@ class LabVM {
     }
 
     AddAdapter([LabVMAdapter]$Adapter) {
+        Write-Verbose "Adding Adapter to VM Config: $($adapter.name) linked to Switch: $($adapter.switch.name))"
         $this.Adapters += $Adapter
     }
 
