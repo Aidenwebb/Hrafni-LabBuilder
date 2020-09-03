@@ -12,4 +12,16 @@
         <switch name="Private Switch" type="Private" />
         <switch name="Internal Switch" type="Internal" />
     </switches>
+
+    <!-- Next let's create VM's -->
+    <vms>
+        <vm name="HRF-DC1">
+            <adapters>
+                <adapter name="External"
+                         linktoswitch="External Switch"/>
+                <adapter name="Private"
+                         linktoswitch="Private Switch"/>
+            </adapters>
+        </vm>
+    </vms>
 </hrafniconfig>
