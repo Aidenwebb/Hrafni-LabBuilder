@@ -7,6 +7,8 @@ Write-Verbose 'Import Classes in order because of dependencies'
 $classList = @(
     'NetAdapter',
     'LabSwitch'
+    'LabVMAdapter'
+    'LabVM'
 )
 
 foreach($class in $classList)
