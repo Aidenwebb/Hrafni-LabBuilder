@@ -1,5 +1,5 @@
 ![Hrafni Labs Logo](misc/Hrafni-labs-logo.png)
-
+[Logo Credit Valeria Romeo](https://www.valeriaromeo.art/)
 # Hrafni-LabBuilder
 Rapidly deploy Hyper-V environments from an XML config file.
 
