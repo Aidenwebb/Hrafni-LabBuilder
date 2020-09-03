@@ -8,18 +8,21 @@ function Install-Lab {
     
     begin {
         # Load the Config into a referencable object
-        $LabConfig = Get-LabConfig
-        
-        # Get Switch Config
-        Get-LabSwitchConfig -LabConfig $LabConfig
+        $LabConfig = Get-LabConfig -ConfigPath $ConfigPath 
     }
     
     process {
 
-        # Set Hyper-V Switches
-        #Initialize-LabSwitch
+        # Get Switch Config
+        $Switches = Get-LabSwitchConfig -LabConfig $LabConfig
+        # Initialize LabSwitch
+        $InitializedSwitches = Initialize-LabSwitch -Switches $Switches
 
-        # Create VMs
+        
+        # Get VM Config
+        $VMs = Get-LabVMConfig -LabConfig $LabConfig
+        # Initialise LabVMs
+        $InitializedVMs = Initialize-LabVM -VMs $VMs
     }
     
     end {
