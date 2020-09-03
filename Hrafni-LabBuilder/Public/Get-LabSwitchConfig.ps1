@@ -1,4 +1,4 @@
-function Get-LabSwitch {
+function Get-LabSwitchConfig {
     [CmdletBinding()]
     param (
         $LabConfig
