@@ -2,7 +2,8 @@ function New-VHDXsFromWIM {
     [CmdletBinding()]
     param (
         [string]$WIMPath,
-        [string]$OutputDirectory
+        [string]$OutputDirectory,
+        [string]$UnattendXMLPath
     )
     
     begin {
@@ -23,8 +24,19 @@ function New-VHDXsFromWIM {
         {
             throw "OutputDirectory not found"
         }
+        
         $OutputDirectory = (Get-Item $OutputDirectory).FullName
     
+        If ($PSBoundParameters.ContainsKey('UnattendXMLPath')){
+            If (-not(Test-Path $UnattendXMLPath))
+            {
+                throw "Unattend.xml not found"
+            }
+
+            $UnattendXML = Get-Item -Path $UnattendXMLPath
+        }
+        
+
         $Images = Get-WindowsImage -ImagePath $WIM.FullName
 
     }
@@ -53,9 +65,20 @@ function New-VHDXsFromWIM {
             Write-Verbose "VHDName: $($VHDName)"
             $VHDOutputPath = "$OutputDirectory$VHDName"
             Write-Verbose "VHDOuput: $($VHDOutputPath)"
-            
-            Convert-WindowsImage -WIM $WIM.FullName -DiskType Dynamic -Size 50GB -VHDFormat VHDX -VHDPath $VHDOutputPath -Edition $Edition
+            if (Test-Path $VHDOutputPath) {
+                Write-Error "A file already exists at $VHDOutputPath. Please remove it to prevent conflicts"
+                continue
+            }
+            If ($PSBoundParameters.ContainsKey('UnattendXMLPath'))
+            {
+                Convert-WindowsImage -WIM $WIM.FullName -DiskType Dynamic -Size 50GB -VHDFormat VHDX -VHDPath $VHDOutputPath -Edition $Edition -UnattendPath $UnattendXML.FullName
+            }
+            else
+            {
+                Convert-WindowsImage -WIM $WIM.FullName -DiskType Dynamic -Size 50GB -VHDFormat VHDX -VHDPath $VHDOutputPath -Edition $Edition
+            }
         }
+        
     }
     
     end {
